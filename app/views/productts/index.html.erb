@@ -1,0 +1,8 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Productts</h1>
+
+<div id="productts">
+    <%= render partial: "productt",collection: @productts %>
+</div>
+<%= link_to "New productt", new_productt_path %>
