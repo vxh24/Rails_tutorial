@@ -26,7 +26,7 @@ gem "stimulus-rails"
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
-gem 'psych', '< 4'
+gem "psych", "< 4"
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
@@ -37,10 +37,11 @@ gem "bcrypt", "~> 3.1.7"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
-
+gem "webpacker", "~> 5.0.0"
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
 gem "bootstrap-sass","3.4.1"
+gem "jquery-rails"
 # Use Sass to process CSS
 gem "sassc-rails"
 gem "i18n"
@@ -50,7 +51,7 @@ gem "i18n"
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
-  gem 'byebug'
+  gem "byebug"
 end
 
 group :development do

@@ -8,15 +8,14 @@
         <%= link_to "app name", "#", id: "logo" %>
         <nav>
           <ul class="nav navbar-nav navbar-right">
-            <li><%= link_to "Home", "static_pages/home" %></li>
-            <li><%= link_to "Help", "static_pages/help" %></li>
-            <li><%= link_to "Log in", "#" %></li>
+
             <li><%= link_to "Home", "home" %></li>
             <li><%= link_to "Help", "help" %></li>
           	  <% if logged_in? %>
-  	            <li><%= link_to t("users"), current_user %></li>
-  	            <li> <%= link_to "Log out", logout_path, method: :delete %></li>
-	            <% else %>
+	            <li><%= link_to t("users"), current_user %></li>
+	            <li> <%= link_to "Log out", logout_path, method: :delete %></li>
+
+	        <% else %>
             	<li><%= link_to "Log in", "login" %></li>
             <% end %>
           </ul>
