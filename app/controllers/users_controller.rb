@@ -1,9 +1,11 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: %i(index edit update destroy)
-  before_action :load_user, only: %i(edit show update destroy)
+  before_action :logged_in_user, except: %i(new create show)
+  before_action :load_user, except: %i(index new create)
   before_action :correct_user, only: %i(edit update )
   before_action :admin_user, only: :destroy
   # GET /users or /users.json
+
+
   def index
     @pagy, @users = pagy User.newest, items: Settings.digits.digit_10
   end
@@ -58,6 +60,16 @@ class UsersController < ApplicationController
       flash[:danger] = "Delete fail!"
     end
     redirect_to users_path
+  end
+  def following
+    @title = "Following"
+    @pagy, @users = pagy @user.following, items: Settings.digits.digit_10
+    render :show_follow
+  end
+  def followers
+    @title = "Followers"
+    @pagy, @users =pagy @user.followers, items: Settings.digits.digit_10
+    render :show_follow
   end
 
   private

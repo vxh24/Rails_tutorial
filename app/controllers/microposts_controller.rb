@@ -34,7 +34,6 @@ class MicropostsController < ApplicationController
 		redirect_to request.referrer || root_url
 	end
 	private
-
 	def logged_in_user
 		unless logged_in?
 			store_location

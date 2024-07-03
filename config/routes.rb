@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'relationships/create'
+  get 'relationships/destroy'
   get '/login',to: 'sessions#new'
   get '/logout',to: 'sessions#destroy'
   post '/login',to: 'sessions#create'
@@ -16,8 +18,13 @@ Rails.application.routes.draw do
   resources :users,only: [:destroy,:show, :edit,:index,:update]
   resources :account_activations, only: :edit
   resources :password_resets, only: %i(new create edit update)
-
   resources :microposts, only: %i(create destroy)
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
+  resources :relationships,only: %i(create destroy)
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
