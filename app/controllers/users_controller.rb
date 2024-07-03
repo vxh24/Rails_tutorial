@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :logged_in_user, only: %i(index edit update destroy)
-  before_action :load_user, only: %i(edit update destroy)
+  before_action :load_user, only: %i(edit show update destroy)
   before_action :correct_user, only: %i(edit update )
   before_action :admin_user, only: :destroy
   # GET /users or /users.json
@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 
   # GET /users/1 or /users/1.json
   def show
-    return unless @user
+    @pagy, @microposts = pagy @user.microposts.recent_posts, items: Settings.digits.digit_10
   end
 
   # GET /users/new
