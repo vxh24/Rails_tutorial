@@ -1,13 +1,13 @@
 class User < ApplicationRecord
-	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 	before_save :downcase_email
+	scope :newest, -> { order(created_at: :desc) }
 	validates :name, presence: true,
                    length: { minimum: 2, maximum: 50 }
-
+    validates :password, presence: true,length: {minimum: Settings.digits.digit_6}, allow_nil: true
   # Validation cho email
   	validates :email, presence: true,
-                    format: { with: VALID_EMAIL_REGEX },
-                    uniqueness: true 
+                    format: { with: Regexp.new(Settings.regex.email) },
+                    uniqueness: true
 	has_secure_password
 	attr_accessor :remember_token
 	class << self
@@ -19,7 +19,6 @@ class User < ApplicationRecord
 				end
 					BCrypt::Password.create string, cost: cost
 				end
-		
 		def new_token
 			SecureRandom.urlsafe_base64
 		end

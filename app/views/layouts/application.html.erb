@@ -7,11 +7,18 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track": "reload" %>
+    <%= javascript_include_tag 'application', 'data-turbo-track': 'reload' %>
+    <%= javascript_include_tag "turbo", type: "module" %>
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
     <%= render "layouts/header" %>
+    <% flash.each do |key, message| %>
+      <div class="alert alert-<%= key == "success" ? "success" : "danger" %>">
+        <%= message %>
+      </div>
+    <% end %>
     <div class="container">
       <%= yield %>
     </div>
