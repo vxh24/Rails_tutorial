@@ -10,8 +10,10 @@ Rails.application.routes.draw do
   get '/help',to: 'static_pages#help'
 
   get "/signup",to: "users#new"
+  post "/edit",to: "users#edit"
   post "signup",to: "users#create"
-  resources :users, only: %i(new create show)
+  resources :users
+  resources :users,only: [:destroy,:show, :edit,:index,:update]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

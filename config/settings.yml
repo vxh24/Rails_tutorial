@@ -1,0 +1,7 @@
+digits:
+  digit_6: 6
+  digit_10: 10
+  digit_80: 80
+regex:
+  email: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+
