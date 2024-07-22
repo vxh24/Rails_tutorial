@@ -4,7 +4,6 @@ class PasswordResetsController < ApplicationController
   def new; end
 
   def edit; end
-
   def create
   	@user = User.find_by email: params.dig(:password_reset, :email)&.downcase
   	if @user
@@ -28,7 +27,6 @@ class PasswordResetsController < ApplicationController
   		flash[:success] = "Reset password success"
   		redirect_to @user
   	end
-
   end
 
   private

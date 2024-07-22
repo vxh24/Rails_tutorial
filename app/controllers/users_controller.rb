@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 
   # GET /users/1 or /users/1.json
   def show
-    return unless @user
+    @pagy, @microposts = pagy @user.microposts.recent_posts, items: Settings.digits.digit_10
   end
 
   # GET /users/new

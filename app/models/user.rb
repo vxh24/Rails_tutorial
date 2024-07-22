@@ -12,6 +12,7 @@ class User < ApplicationRecord
 	attr_accessor :remember_token, :activation_token, :reset_token
 	before_save :downcase_email
 	before_create :create_activation_digest
+	has_many :microposts
 	class << self
 		def User.digest string
 			cost = if ActiveModel::SecurePassword.min_cost
@@ -24,6 +25,9 @@ class User < ApplicationRecord
 		def new_token
 			SecureRandom.urlsafe_base64
 		end
+	end
+	def feed
+		microposts
 	end
 	def password_reset_expired?
 		reset_sent_at < Settings.digits.digit_2.hours.ago
