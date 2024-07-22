@@ -10,6 +10,7 @@
     <%= javascript_include_tag 'application', 'data-turbo-track': 'reload' %>
     <%= javascript_include_tag "turbo", type: "module" %>
     <%= javascript_importmap_tags %>
+    <%= javascript_include_tag "translations", skip_pipeline: true %>
   </head>
 
   <body>
